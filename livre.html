@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livre — Helios Astro</title>
+  <meta name="description" content="Le livre au cœur de l’univers Helios Astro.">
+  <style>
+    :root{
+      --bg:#050814;
+      --panel:#0c1320;
+      --panel-2:#09101b;
+      --line:rgba(91,214,255,.18);
+      --text:#eef5ff;
+      --muted:#b5c7e8;
+      --accent:#45ddff;
+      --accent-2:#8ef2ff;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      padding:0;
+      min-height:100%;
+      font-family:Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(69,221,255,.08), transparent 30%),
+        radial-gradient(circle at center, rgba(255,215,120,.05), transparent 25%),
+        var(--bg);
+      color:var(--text);
+    }
+
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1240px;margin:0 auto;padding:24px}
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:14px 0 20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+
+    .brand img{
+      width:72px;
+      height:72px;
+      object-fit:contain;
+      border-radius:20px;
+      background:#fff;
+      padding:6px;
+    }
+
+    .brand h1{margin:0;font-size:40px}
+    .brand p{margin:4px 0 0;color:var(--muted);font-size:18px}
+
+    nav{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    nav a{
+      padding:10px 14px;
+      border-radius:999px;
+      color:var(--muted);
+      border:1px solid transparent;
+    }
+
+    nav a:hover{border-color:var(--line);color:var(--text)}
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#00131c;
+      font-weight:800;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .cover-box,
+    .text-box{
+      background:linear-gradient(180deg,var(--panel),var(--panel-2));
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:22px;
+      box-shadow:0 18px 34px rgba(0,0,0,.25);
+    }
+
+    .cover-box img{
+      width:100%;
+      max-width:540px;
+      display:block;
+      margin:0 auto;
+      border-radius:24px;
+      object-fit:cover;
+    }
+
+    .text-box h2{
+      margin:0 0 18px;
+      font-size:52px;
+      line-height:1;
+    }
+
+    .text-box p{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:20px;
+    }
+
+    .actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#00131c;
+      font-weight:800;
+    }
+
+    .ghost{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:700;
+    }
+
+    footer{
+      margin-top:34px;
+      padding:26px 0 10px;
+      color:var(--muted);
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media(max-width:1020px){
+      .hero{grid-template-columns:1fr}
+      .text-box h2{font-size:40px}
+      .brand h1{font-size:34px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="./expert/assets/logo-heliosastro.png?v=1100" alt="Logo Helios Astro">
+        <div>
+          <h1>HELIOS ASTRO</h1>
+          <p>Astrologie géométrique premium</p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="./index.html?v=1100">Accueil</a>
+        <a href="./offres.html?v=1100">Offres</a>
+        <a href="./logiciel.html?v=1100">Logiciel</a>
+        <a href="./livre.html?v=1100">Livre</a>
+        <a href="./contact.html?v=1100">Contact</a>
+        <a class="cta" href="./expert/?v=1100">Commander</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="cover-box">
+        <img src="./assets/livre-dieu-est-la-lumiere.jpg?v=1100" alt="Livre Dieu est la lumière">
+      </div>
+
+      <div class="text-box">
+        <h2>Le livre au cœur de l’univers Helios Astro</h2>
+        <p>
+          Dieu est la lumière, géométrie sacrée prolonge la vision d’Helios Astro :
+          lumière, structure, symbole, géométrie, vibration et lecture du réel.
+        </p>
+        <p>
+          Ce livre sert de socle philosophique et artistique à l’univers du site.
+        </p>
+
+        <div class="actions">
+          <a class="btn" href="#">Découvrir le livre</a>
+          <a class="ghost" href="https://www.amazon.fr/Dieu-est-lumiere-geometrie-sacr%C4%97e/dp/B08MSNHZDR" target="_blank" rel="noopener noreferrer">Acheter sur Amazon</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2026 Helios Astro</div>
+      <div>
+        <a href="./index.html?v=1100">Accueil</a> ·
+        <a href="./offres.html?v=1100">Offres</a> ·
+        <a href="./logiciel.html?v=1100">Logiciel</a> ·
+        <a href="./contact.html?v=1100">Contact</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
