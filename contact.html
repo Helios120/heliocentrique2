@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Helios Astro</title>
+  <meta name="description" content="Contactez Helios Astro pour commander votre lecture astrologique.">
+  <style>
+    :root{
+      --bg:#050814;
+      --panel:#0c1320;
+      --panel-2:#09101b;
+      --line:rgba(91,214,255,.18);
+      --text:#eef5ff;
+      --muted:#b5c7e8;
+      --accent:#45ddff;
+      --accent-2:#8ef2ff;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      padding:0;
+      min-height:100%;
+      font-family:Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(69,221,255,.08), transparent 30%),
+        radial-gradient(circle at center, rgba(255,215,120,.05), transparent 25%),
+        var(--bg);
+      color:var(--text);
+    }
+
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1000px;margin:0 auto;padding:24px}
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:14px 0 20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+
+    .brand img{
+      width:72px;
+      height:72px;
+      object-fit:contain;
+      border-radius:20px;
+      background:#fff;
+      padding:6px;
+    }
+
+    .brand h1{margin:0;font-size:40px}
+    .brand p{margin:4px 0 0;color:var(--muted);font-size:18px}
+
+    nav{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    nav a{
+      padding:10px 14px;
+      border-radius:999px;
+      color:var(--muted);
+      border:1px solid transparent;
+    }
+
+    nav a:hover{border-color:var(--line);color:var(--text)}
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#00131c;
+      font-weight:800;
+    }
+
+    .panel{
+      background:linear-gradient(180deg,var(--panel),var(--panel-2));
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:28px;
+      box-shadow:0 18px 34px rgba(0,0,0,.25);
+    }
+
+    h2{
+      margin:0 0 14px;
+      font-size:46px;
+    }
+
+    p{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:18px;
+    }
+
+    form{
+      display:grid;
+      gap:14px;
+    }
+
+    label{
+      display:grid;
+      gap:8px;
+      font-weight:700;
+    }
+
+    input,textarea,select{
+      width:100%;
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:#09101b;
+      color:var(--text);
+      font:inherit;
+      outline:none;
+    }
+
+    textarea{
+      min-height:150px;
+      resize:vertical;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#00131c;
+      font-weight:800;
+      border:none;
+      cursor:pointer;
+    }
+
+    .contact-note{
+      margin-top:18px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="./expert/assets/logo-heliosastro.png?v=1100" alt="Logo Helios Astro">
+        <div>
+          <h1>HELIOS ASTRO</h1>
+          <p>Astrologie géométrique premium</p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="./index.html?v=1100">Accueil</a>
+        <a href="./offres.html?v=1100">Offres</a>
+        <a href="./logiciel.html?v=1100">Logiciel</a>
+        <a href="./livre.html?v=1100">Livre</a>
+        <a href="./contact.html?v=1100">Contact</a>
+        <a class="cta" href="./expert/?v=1100">Commander</a>
+      </nav>
+    </header>
+
+    <section class="panel">
+      <h2>Commander une lecture Helios Astro</h2>
+      <p>
+        Utilisez ce formulaire pour demander votre thème astral, votre transit 3 mois
+        ou votre révolution solaire.
+      </p>
+
+      <form action="mailto:contact@heliosastro.com" method="post" enctype="text/plain">
+        <label>
+          Nom
+          <input type="text" name="Nom" placeholder="Votre nom" required>
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="Email" placeholder="Votre email" required>
+        </label>
+
+        <label>
+          Prestation
+          <select name="Prestation" required>
+            <option value="Thème astral">Thème astral</option>
+            <option value="Transit 3 mois">Transit 3 mois</option>
+            <option value="Révolution solaire">Révolution solaire</option>
+          </select>
+        </label>
+
+        <label>
+          Message
+          <textarea name="Message" placeholder="Date, heure, ville de naissance ou toute précision utile." required></textarea>
+        </label>
+
+        <button class="btn" type="submit">Envoyer la demande</button>
+      </form>
+
+      <div class="contact-note">
+        Si votre messagerie ne s’ouvre pas automatiquement, remplacez l’adresse
+        dans le code par votre vraie adresse professionnelle.
+      </div>
+    </section>
+  </div>
+</body>
+</html>
