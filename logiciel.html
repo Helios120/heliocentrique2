@@ -7,223 +7,52 @@
   <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Logiciel — Helios Astro</title>
-  <meta name="description" content="Le logiciel expert Helios Astro pour générer une carte visuelle haut de gamme.">
   <style>
-    :root{
-      --bg:#050814;
-      --panel:#0c1320;
-      --panel-2:#09101b;
-      --line:rgba(91,214,255,.18);
-      --text:#eef5ff;
-      --muted:#b5c7e8;
-      --accent:#45ddff;
-      --accent-2:#8ef2ff;
-    }
+    :root{--bg:#050814;--panel:#0c1320;--panel2:#09101b;--line:rgba(91,214,255,.18);--text:#eef5ff;--muted:#b5c7e8;--accent:#45ddff;--accent2:#8ef2ff}
     *{box-sizing:border-box}
-    html,body{
-      margin:0;
-      padding:0;
-      min-height:100%;
-      font-family:Arial,Helvetica,sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(69,221,255,.08), transparent 30%),
-        radial-gradient(circle at center, rgba(255,215,120,.05), transparent 25%),
-        var(--bg);
-      color:var(--text);
-    }
-
+    html,body{margin:0;padding:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top,rgba(69,221,255,.09),transparent 30%),radial-gradient(circle at center,rgba(255,211,105,.05),transparent 28%),var(--bg);color:var(--text)}
     a{text-decoration:none;color:inherit}
     .wrap{max-width:1260px;margin:0 auto;padding:24px}
-
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      padding:14px 0 20px;
-      flex-wrap:wrap;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:16px;
-    }
-
-    .brand img{
-      width:72px;
-      height:72px;
-      object-fit:contain;
-      border-radius:20px;
-      background:#fff;
-      padding:6px;
-    }
-
-    .brand h1{margin:0;font-size:40px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:14px 0 28px}
+    .brand{display:flex;align-items:center;gap:16px}
+    .brand img{width:72px;height:72px;object-fit:contain;background:#fff;border-radius:20px;padding:6px}
+    .brand h1{margin:0;font-size:40px;letter-spacing:.04em}
     .brand p{margin:4px 0 0;color:var(--muted);font-size:18px}
-
-    nav{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    nav a{
-      padding:10px 14px;
-      border-radius:999px;
-      color:var(--muted);
-      border:1px solid transparent;
-    }
-
-    nav a:hover{border-color:var(--line);color:var(--text)}
-
-    .cta{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px 22px;
-      border-radius:999px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      color:#00131c;
-      font-weight:800;
-      box-shadow:0 10px 28px rgba(69,221,255,.20);
-    }
-
-    .hero{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-      align-items:center;
-    }
-
-    .panel{
-      background:linear-gradient(180deg,var(--panel),var(--panel-2));
-      border:1px solid var(--line);
-      border-radius:30px;
-      padding:28px;
-      box-shadow:0 18px 34px rgba(0,0,0,.25);
-    }
-
-    .hero h2{
-      margin:0 0 18px;
-      font-size:58px;
-      line-height:1;
-    }
-
-    .hero p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.75;
-      font-size:20px;
-    }
-
-    .actions{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:24px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px 22px;
-      border-radius:999px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      color:#00131c;
-      font-weight:800;
-    }
-
-    .ghost{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px 22px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      font-weight:700;
-    }
-
-    .visual{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:540px;
-    }
-
-    .visual img{
-      width:min(100%,520px);
-      aspect-ratio:1/1;
-      object-fit:contain;
-      border-radius:24px;
-    }
-
-    .features{
-      margin-top:22px;
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-    }
-
-    .feature{
-      background:linear-gradient(180deg,rgba(16,23,37,.94),rgba(9,16,27,.92));
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:22px;
-    }
-
-    .feature h3{
-      margin:0 0 10px;
-      font-size:28px;
-    }
-
-    .feature p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:18px;
-    }
-
-    footer{
-      margin-top:34px;
-      padding:26px 0 10px;
-      color:var(--muted);
-      display:flex;
-      justify-content:space-between;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-
-    @media(max-width:1050px){
-      .hero{grid-template-columns:1fr}
-      .features{grid-template-columns:1fr}
-      .hero h2{font-size:42px}
-      .brand h1{font-size:34px}
-    }
+    nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    nav a{padding:10px 14px;border-radius:999px;color:var(--muted);border:1px solid transparent;background:rgba(255,255,255,.025)}
+    nav a:hover,nav a.active{color:var(--text);border-color:var(--line)}
+    .cta,.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#00131c;font-weight:800;box-shadow:0 10px 28px rgba(69,221,255,.22)}
+    .ghost{display:inline-flex;padding:14px 22px;border-radius:999px;border:1px solid var(--line);color:var(--text);font-weight:800;background:rgba(255,255,255,.03)}
+    .hero{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+    .panel{background:linear-gradient(180deg,rgba(12,19,32,.9),rgba(9,16,27,.9));border:1px solid var(--line);border-radius:30px;padding:30px;box-shadow:0 18px 34px rgba(0,0,0,.28)}
+    h2{margin:0 0 18px;font-size:58px;line-height:1}
+    p{color:var(--muted);line-height:1.75;font-size:20px}
+    .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+    .visual{display:flex;align-items:center;justify-content:center;min-height:540px}
+    .visual img{width:min(100%,520px);aspect-ratio:1/1;object-fit:contain;border-radius:24px}
+    .features{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature{background:linear-gradient(180deg,rgba(16,23,37,.94),rgba(9,16,27,.92));border:1px solid var(--line);border-radius:24px;padding:22px}
+    .feature h3{margin:0 0 10px;font-size:28px}
+    .feature p{margin:0;font-size:18px}
+    footer{margin-top:34px;padding:26px 0 10px;color:var(--muted);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    @media(max-width:1050px){.hero,.features{grid-template-columns:1fr}h2{font-size:42px}.brand h1{font-size:32px}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="brand">
-        <img src="./expert/assets/logo-heliosastro.png?v=1100" alt="Logo Helios Astro">
-        <div>
-          <h1>HELIOS ASTRO</h1>
-          <p>Astrologie géométrique premium</p>
-        </div>
+        <img src="./expert/assets/logo-heliosastro.png?v=1400" alt="Logo Helios Astro">
+        <div><h1>HELIOS ASTRO</h1><p>Astrologie géométrique premium</p></div>
       </div>
-
       <nav>
-        <a href="./index.html?v=1100">Accueil</a>
-        <a href="./offres.html?v=1100">Offres</a>
-        <a href="./logiciel.html?v=1100">Logiciel</a>
-        <a href="./livre.html?v=1100">Livre</a>
-        <a href="./contact.html?v=1100">Contact</a>
-        <a class="cta" href="./expert/?v=1100">Accéder au logiciel expert</a>
+        <a href="./index.html?v=1400">Accueil</a>
+        <a href="./offres.html?v=1400">Offres</a>
+        <a class="active" href="./logiciel.html?v=1400">Logiciel</a>
+        <a href="./livre.html?v=1400">Livre</a>
+        <a href="./laboratoire.html?v=1400">Laboratoire</a>
+        <a href="./contact.html?v=1400">Contact</a>
+        <a class="cta" href="./expert/?v=1400">Accéder au logiciel expert</a>
       </nav>
     </header>
 
@@ -235,52 +64,25 @@
           haut de gamme avec maisons astrologiques, ascendant, MC, positions planétaires,
           arcs colorés et export PDF.
         </p>
-
         <div class="actions">
-          <a class="btn" href="./expert/?v=1100">Ouvrir le logiciel</a>
-          <a class="ghost" href="./offres.html?v=1100">Voir les offres</a>
+          <a class="btn" href="./expert/?v=1400">Ouvrir le logiciel</a>
+          <a class="ghost" href="./offres.html?v=1400">Voir les offres</a>
         </div>
       </div>
-
       <div class="panel visual">
-        <img src="./expert/assets/roue-heliosastro.png?v=1100" alt="Roue Helios Astro">
+        <img src="./expert/assets/roue-heliosastro.png?v=1400" alt="Roue Helios Astro">
       </div>
     </section>
 
     <section class="features">
-      <article class="feature">
-        <h3>Thème complet</h3>
-        <p>
-          Affichage professionnel de la carte, des signes, des positions et de la
-          structure du thème.
-        </p>
-      </article>
-
-      <article class="feature">
-        <h3>Angles et maisons</h3>
-        <p>
-          Lecture de l’ascendant, du MC et des douze maisons dans une présentation
-          claire et visuelle.
-        </p>
-      </article>
-
-      <article class="feature">
-        <h3>Export premium</h3>
-        <p>
-          Export PDF pour remise au client dans un format propre, élégant et
-          immédiatement exploitable.
-        </p>
-      </article>
+      <article class="feature"><h3>Thème complet</h3><p>Affichage professionnel de la carte, des signes, des positions et de la structure du thème.</p></article>
+      <article class="feature"><h3>Angles et maisons</h3><p>Lecture de l’ascendant, du MC et des douze maisons dans une présentation claire.</p></article>
+      <article class="feature"><h3>Export premium</h3><p>Export PDF propre, élégant et immédiatement exploitable.</p></article>
     </section>
 
     <footer>
       <div>© 2026 Helios Astro</div>
-      <div>
-        <a href="./index.html?v=1100">Accueil</a> ·
-        <a href="./offres.html?v=1100">Offres</a> ·
-        <a href="./logiciel.html?v=1100">Logiciel</a> ·
-        <a href="./contact.html?v=1100">Contact</a>
-      </div>
+      <div><a href="./index.html?v=1400">Accueil</a> · <a href="./offres.html?v=1400">Offres</a> · <a href="./contact.html?v=1400">Contact</a></div>
     </footer>
   </div>
 </body>
