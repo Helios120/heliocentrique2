@@ -6,24 +6,25 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Helios Astro</title>
-  <meta name="description" content="Helios Astro — astrologie visuelle, vibratoire et géométrique premium.">
+  <title>Helios Astro — Astrologie géométrique premium</title>
+  <meta name="description" content="Helios Astro transforme votre thème astral en expérience visuelle, géométrique, symbolique et vibratoire.">
 
   <style>
     :root{
-      --bg:#050814;
-      --panel:#0c1320;
-      --panel-2:#09101b;
-      --line:rgba(91,214,255,.18);
-      --text:#eef5ff;
-      --muted:#b5c7e8;
-      --accent:#45ddff;
-      --accent-2:#8ef2ff;
-      --gold:#ffd369;
-      --shadow:0 18px 34px rgba(0,0,0,.25);
+      --bg:#030711;
+      --panel:rgba(10,18,31,.82);
+      --panel2:rgba(7,13,24,.92);
+      --line:rgba(88,219,255,.20);
+      --text:#f3f8ff;
+      --muted:#b7c9e9;
+      --accent:#42ddff;
+      --accent2:#8ff5ff;
+      --gold:#ffd36a;
+      --violet:#ba7cff;
     }
 
     *{box-sizing:border-box}
+
     html,body{
       margin:0;
       padding:0;
@@ -31,491 +32,623 @@
       font-family:Arial,Helvetica,sans-serif;
       background:#000;
       color:var(--text);
+      overflow-x:hidden;
     }
-    body{overflow-x:hidden}
+
     a{text-decoration:none;color:inherit}
 
-    #bg-canvas{
+    #space{
       position:fixed;
       inset:0;
       width:100vw;
       height:100vh;
-      display:block;
       z-index:0;
       background:#000;
     }
 
-    .page-overlay{
+    .veil{
       position:fixed;
       inset:0;
       z-index:1;
-      background:
-        radial-gradient(circle at top, rgba(69,221,255,.08), transparent 30%),
-        radial-gradient(circle at center, rgba(255,215,120,.04), transparent 25%),
-        rgba(3,6,14,.48);
       pointer-events:none;
+      background:
+        radial-gradient(circle at 22% 12%, rgba(66,221,255,.18), transparent 34%),
+        radial-gradient(circle at 82% 8%, rgba(186,124,255,.14), transparent 34%),
+        radial-gradient(circle at 50% 70%, rgba(255,211,106,.07), transparent 35%),
+        linear-gradient(180deg, rgba(0,0,0,.36), rgba(1,5,14,.78));
     }
 
-    .site{position:relative;z-index:2}
-    .wrap{max-width:1260px;margin:0 auto;padding:24px}
+    .site{
+      position:relative;
+      z-index:2;
+    }
+
+    .wrap{
+      width:min(1320px, calc(100% - 42px));
+      margin:0 auto;
+    }
 
     header{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:20px;
-      padding:14px 0 20px;
-      flex-wrap:wrap;
+      gap:22px;
+      padding:24px 0;
+      position:sticky;
+      top:0;
+      z-index:5;
+      backdrop-filter:blur(16px);
     }
 
     .brand{
       display:flex;
       align-items:center;
-      gap:16px;
+      gap:14px;
     }
 
     .brand img{
-      width:72px;
-      height:72px;
+      width:66px;
+      height:66px;
       object-fit:contain;
-      border-radius:20px;
+      border-radius:18px;
       background:#fff;
       padding:6px;
-      box-shadow:0 10px 24px rgba(0,0,0,.28);
+      box-shadow:0 0 28px rgba(66,221,255,.20);
     }
 
-    .brand h1{
-      margin:0;
-      font-size:40px;
-      letter-spacing:.04em;
+    .brand strong{
+      display:block;
+      font-size:25px;
+      letter-spacing:.07em;
     }
 
-    .brand p{
-      margin:4px 0 0;
+    .brand span{
       color:var(--muted);
-      font-size:18px;
+      font-size:14px;
     }
 
     nav{
       display:flex;
-      gap:12px;
-      flex-wrap:wrap;
       align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
     }
 
     nav a{
-      padding:10px 14px;
+      padding:10px 13px;
       border-radius:999px;
       color:var(--muted);
       border:1px solid transparent;
-      background:rgba(0,0,0,.18);
-      backdrop-filter:blur(6px);
-      transition:.2s ease;
+      background:rgba(255,255,255,.025);
+      font-weight:700;
     }
 
-    nav a:hover{
-      border-color:var(--line);
+    nav a:hover,
+    nav a.active{
       color:var(--text);
+      border-color:var(--line);
+      background:rgba(66,221,255,.07);
     }
 
     .cta{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px 22px;
-      border-radius:999px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
       color:#00131c;
-      font-weight:800;
-      box-shadow:0 10px 28px rgba(69,221,255,.20);
+      font-weight:900;
+      box-shadow:0 14px 34px rgba(66,221,255,.25);
     }
 
     .hero{
       display:grid;
       grid-template-columns:1.05fr .95fr;
       gap:28px;
-      margin-top:10px;
+      min-height:calc(100vh - 150px);
+      align-items:center;
+      padding:34px 0 70px;
     }
 
     .panel{
-      background:linear-gradient(180deg,rgba(12,19,32,.88),rgba(9,16,27,.88));
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
       border:1px solid var(--line);
-      border-radius:30px;
-      padding:28px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(10px);
+      border-radius:34px;
+      padding:32px;
+      box-shadow:0 24px 50px rgba(0,0,0,.32);
+      backdrop-filter:blur(14px);
     }
 
     .eyebrow{
       display:inline-flex;
-      align-items:center;
       gap:8px;
-      padding:8px 14px;
+      align-items:center;
+      padding:9px 14px;
       border-radius:999px;
-      background:rgba(69,221,255,.08);
-      border:1px solid rgba(69,221,255,.18);
+      background:rgba(66,221,255,.08);
+      border:1px solid rgba(66,221,255,.18);
       color:var(--accent);
-      font-weight:700;
-      font-size:14px;
+      font-weight:800;
       margin-bottom:18px;
+      font-size:14px;
     }
 
-    .hero h2{
+    h1{
       margin:0 0 18px;
-      font-size:66px;
-      line-height:.96;
+      font-size:clamp(48px,7vw,82px);
+      line-height:.92;
+      letter-spacing:-.06em;
     }
 
-    .hero h2 .accent{
+    .accent{
       color:var(--accent);
+      text-shadow:0 0 24px rgba(66,221,255,.28);
     }
 
-    .hero p{
+    .lead{
       margin:0;
-      font-size:21px;
-      line-height:1.65;
+      max-width:760px;
       color:var(--muted);
-      max-width:720px;
+      font-size:21px;
+      line-height:1.72;
+      font-weight:600;
     }
 
     .actions{
       display:flex;
       gap:14px;
       flex-wrap:wrap;
-      margin-top:28px;
+      margin-top:30px;
     }
 
-    .ghost{
+    .button{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:14px 22px;
+      padding:15px 23px;
       border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
+      font-weight:900;
+    }
+
+    .button.primary{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#00131c;
+      box-shadow:0 14px 34px rgba(66,221,255,.25);
+    }
+
+    .button.secondary{
       color:var(--text);
-      font-weight:700;
-    }
-
-    .hero-cards{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-      margin-top:26px;
-    }
-
-    .mini-card{
-      padding:18px;
-      border-radius:22px;
-      border:1px solid rgba(103,211,255,.14);
-      background:rgba(255,255,255,.03);
-    }
-
-    .mini-card h3{
-      margin:0 0 6px;
-      font-size:18px;
-    }
-
-    .mini-card p{
-      margin:0;
-      font-size:15px;
-      line-height:1.55;
-      color:var(--muted);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.035);
     }
 
     .hero-visual{
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      position:relative;
       min-height:620px;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
     }
 
-    .hero-visual img{
-      width:min(100%,620px);
+    .hero-visual canvas{
+      width:100%;
       aspect-ratio:1/1;
-      object-fit:contain;
+      display:block;
       border-radius:28px;
-      box-shadow:0 20px 42px rgba(0,0,0,.34);
+      background:#000;
     }
 
-    .section{
+    .visual-label{
+      position:absolute;
+      top:22px;
+      left:22px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--gold);
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+
+    .offer-strip{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
       margin-top:28px;
     }
 
-    .section-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
+    .offer{
+      padding:20px;
+      border-radius:24px;
+      border:1px solid rgba(91,214,255,.16);
+      background:rgba(255,255,255,.035);
     }
 
-    .section h3{
-      margin:0 0 12px;
-      font-size:28px;
+    .offer h3{
+      margin:0 0 8px;
+      font-size:22px;
     }
 
-    .section p{
+    .offer p{
       margin:0;
       color:var(--muted);
-      line-height:1.7;
-      font-size:18px;
+      line-height:1.55;
+      font-weight:600;
     }
 
-    .feature-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-      margin-top:18px;
-    }
-
-    .feature-card{
-      background:linear-gradient(180deg,rgba(12,19,32,.9),rgba(9,16,27,.88));
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:24px;
-      box-shadow:var(--shadow);
-    }
-
-    .feature-card h4{
-      margin:12px 0 10px;
+    .price{
+      display:block;
+      margin-top:12px;
+      color:var(--gold);
+      font-weight:900;
       font-size:26px;
     }
 
-    .feature-card p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.65;
+    section.block{
+      padding:38px 0;
     }
 
-    .icon-dot{
-      width:44px;
-      height:44px;
-      border-radius:14px;
+    .two{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      align-items:center;
+    }
+
+    .title{
+      font-size:clamp(38px,5vw,58px);
+      line-height:1;
+      margin:0 0 18px;
+      letter-spacing:-.04em;
+    }
+
+    .text{
+      color:var(--muted);
+      font-size:19px;
+      line-height:1.75;
+      font-weight:600;
+      margin:0;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:22px;
+    }
+
+    .card{
+      background:linear-gradient(180deg,rgba(14,24,40,.82),rgba(8,15,27,.92));
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:26px;
+      box-shadow:0 18px 38px rgba(0,0,0,.26);
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:25px;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-weight:600;
+    }
+
+    .icon{
+      width:46px;
+      height:46px;
+      border-radius:16px;
       display:grid;
       place-items:center;
-      background:rgba(69,221,255,.12);
-      border:1px solid rgba(69,221,255,.18);
+      background:rgba(66,221,255,.12);
+      border:1px solid rgba(66,221,255,.18);
       color:var(--accent);
-      font-size:20px;
-      font-weight:800;
+      font-size:22px;
+      font-weight:900;
+      margin-bottom:16px;
+    }
+
+    .image-card{
+      overflow:hidden;
+      padding:0;
+    }
+
+    .image-card img{
+      width:100%;
+      display:block;
+      border-radius:28px;
+      object-fit:cover;
     }
 
     footer{
-      margin-top:34px;
-      padding:26px 0 10px;
-      color:var(--muted);
+      padding:42px 0 28px;
       display:flex;
       justify-content:space-between;
       gap:18px;
       flex-wrap:wrap;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.06);
+      margin-top:34px;
     }
 
     @media(max-width:1080px){
-      .hero{grid-template-columns:1fr}
-      .section-grid{grid-template-columns:1fr}
-      .feature-grid{grid-template-columns:1fr}
-      .hero-cards{grid-template-columns:1fr}
-      .hero h2{font-size:48px}
-      .brand h1{font-size:34px}
-      .hero p{font-size:18px}
+      .hero,.two{grid-template-columns:1fr}
+      .cards,.offer-strip{grid-template-columns:1fr}
+      .hero-visual{min-height:auto}
+      nav{justify-content:flex-start}
     }
   </style>
 </head>
+
 <body>
-  <canvas id="bg-canvas"></canvas>
-  <div class="page-overlay"></div>
+  <canvas id="space"></canvas>
+  <div class="veil"></div>
 
   <div class="site">
     <div class="wrap">
       <header>
-        <div class="brand">
-          <img src="./expert/assets/logo-heliosastro.png?v=1100" alt="Logo Helios Astro">
+        <a class="brand" href="./index.html?v=1300">
+          <img src="./expert/assets/logo-heliosastro.png?v=1300" alt="Logo Helios Astro">
           <div>
-            <h1>HELIOS ASTRO</h1>
-            <p>Astrologie géométrique premium</p>
+            <strong>HELIOS ASTRO</strong>
+            <span>Astrologie géométrique premium</span>
           </div>
-        </div>
+        </a>
 
         <nav>
-          <a href="./index.html?v=1100">Accueil</a>
-          <a href="./offres.html?v=1100">Offres</a>
-          <a href="./logiciel.html?v=1100">Logiciel</a>
-          <a href="./livre.html?v=1100">Livre</a>
-          <a href="./contact.html?v=1100">Contact</a>
-          <a class="cta" href="./expert/?v=1100">Commander</a>
+          <a class="active" href="./index.html?v=1300">Accueil</a>
+          <a href="./offres.html?v=1300">Offres</a>
+          <a href="./logiciel.html?v=1300">Logiciel</a>
+          <a href="./livre.html?v=1300">Livre</a>
+          <a href="./laboratoire.html?v=1300">Laboratoire</a>
+          <a href="./contact.html?v=1300">Contact</a>
+          <a class="cta" href="./expert/?v=1300">Commander</a>
         </nav>
       </header>
 
-      <section class="hero">
-        <div class="panel">
-          <div class="eyebrow">Astrologie • Géométrie sacrée • Lecture vibratoire</div>
-          <h2>Votre thème astral, <span class="accent">version vivante.</span></h2>
-          <p>
-            Helios Astro transforme votre carte du ciel en création visuelle forte, sensible
-            et mémorable. Chaque lecture devient une expérience symbolique unique, à conserver,
-            à offrir ou à explorer comme une empreinte personnelle.
-          </p>
+      <main>
+        <section class="hero">
+          <div class="panel">
+            <div class="eyebrow">Astrologie • Géométrie sacrée • Lecture vibratoire</div>
+            <h1>Votre thème astral, <span class="accent">version vivante.</span></h1>
+            <p class="lead">
+              Helios Astro transforme votre carte du ciel en expérience visuelle, symbolique et mémorable.
+              Le thème devient une empreinte lumineuse : une lecture personnelle, esthétique, imprimable
+              et conçue pour marquer.
+            </p>
 
-          <div class="actions">
-            <a class="cta" href="./offres.html?v=1100">Découvrir les offres</a>
-            <a class="ghost" href="./logiciel.html?v=1100">Tester le logiciel degrés</a>
+            <div class="actions">
+              <a class="button primary" href="./offres.html?v=1300">Découvrir les offres</a>
+              <a class="button secondary" href="./laboratoire.html?v=1300">Explorer le laboratoire</a>
+            </div>
+
+            <div class="offer-strip">
+              <article class="offer">
+                <h3>Thème astral</h3>
+                <p>Lecture de naissance, carte visuelle, ascendant et maisons.</p>
+                <span class="price">50 €</span>
+              </article>
+              <article class="offer">
+                <h3>Transit 3 mois</h3>
+                <p>Analyse d’une période, axes favorables et points de tension.</p>
+                <span class="price">25 €</span>
+              </article>
+              <article class="offer">
+                <h3>Révolution solaire</h3>
+                <p>Lecture annuelle, direction symbolique et cycles majeurs.</p>
+                <span class="price">35 €</span>
+              </article>
+            </div>
           </div>
 
-          <div class="hero-cards">
-            <div class="mini-card">
-              <h3>Thème astral</h3>
-              <p>Votre lecture de naissance selon l’univers Helios Astro.</p>
-            </div>
-            <div class="mini-card">
-              <h3>Transit pour 3 mois</h3>
-              <p>Une période décodée pour mieux anticiper les mouvements à venir.</p>
-            </div>
-            <div class="mini-card">
-              <h3>Révolution solaire</h3>
-              <p>Votre grande lecture annuelle dans une forme élégante et claire.</p>
+          <div class="panel hero-visual">
+            <div class="visual-label">Signature vivante Helios</div>
+            <canvas id="hero-mandala"></canvas>
+          </div>
+        </section>
+
+        <section class="block two">
+          <div class="panel">
+            <h2 class="title">Pourquoi ça sort de l’ordinaire</h2>
+            <p class="text">
+              La plupart des sites d’astrologie vendent un texte générique avec une roue figée.
+              Helios Astro propose une expérience : thème, lumière, géométrie, arcs colorés,
+              maisons, ascendant et restitution premium.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="./logiciel.html?v=1300">Voir le logiciel</a>
+              <a class="button secondary" href="./livre.html?v=1300">Explorer le livre</a>
             </div>
           </div>
-        </div>
 
-        <div class="panel hero-visual">
-          <img src="./expert/assets/roue-heliosastro.png?v=1100" alt="Signature visuelle Helios Astro">
-        </div>
-      </section>
+          <div class="panel image-card">
+            <img src="./expert/assets/roue-heliosastro.png?v=1300" alt="Roue Helios Astro">
+          </div>
+        </section>
 
-      <section class="section section-grid">
-        <div class="panel">
-          <h3>Pourquoi les clients aiment Helios Astro</h3>
-          <p>
-            Helios Astro transforme une simple carte du ciel en expérience visuelle, symbolique
-            et émotionnelle. Chaque thème devient une création unique, élégante, marquante et
-            facile à offrir ou à conserver.
-          </p>
-        </div>
+        <section class="block">
+          <div class="two">
+            <div>
+              <h2 class="title">Une méthode conçue pour être vue, comprise et ressentie.</h2>
+            </div>
+            <p class="text">
+              Helios Astro relie le ciel, la géométrie sacrée et la lecture symbolique.
+              Le rendu devient un support de lecture, de mémoire, d’accompagnement et de transmission.
+            </p>
+          </div>
 
-        <div class="panel">
-          <h3>Une méthode conçue pour marquer</h3>
-          <p>
-            Helios Astro relie le ciel, la géométrie et le récit. Résultat : une cartographie
-            symbolique que l’on peut consulter, imprimer, offrir et collectionner.
-          </p>
-        </div>
-      </section>
+          <div class="cards">
+            <article class="card">
+              <div class="icon">✺</div>
+              <h3>Structure</h3>
+              <p>Le thème est posé dans une architecture lisible : degrés, signes, maisons, angles et axes principaux.</p>
+            </article>
 
-      <section class="feature-grid">
-        <article class="feature-card">
-          <div class="icon-dot">✺</div>
-          <h4>Un thème vraiment unique</h4>
-          <p>
-            Chaque création possède sa propre énergie visuelle, son propre équilibre et sa
-            propre signature. Le client reçoit une œuvre personnelle, pas un document banal.
-          </p>
-        </article>
+            <article class="card">
+              <div class="icon">☉</div>
+              <h3>Lumière</h3>
+              <p>Les flux colorés donnent une présence visuelle au thème. L’image devient une lecture en soi.</p>
+            </article>
 
-        <article class="feature-card">
-          <div class="icon-dot">✧</div>
-          <h4>Une lecture qui marque</h4>
-          <p>
-            Les formes, les symboles et les axes du thème sont mis en lumière dans une lecture
-            plus sensible, plus mémorable et plus captivante.
-          </p>
-        </article>
-
-        <article class="feature-card">
-          <div class="icon-dot">∞</div>
-          <h4>Un cadeau premium</h4>
-          <p>
-            Le rendu visuel, l’univers cosmique et la mise en forme donnent au thème une vraie
-            valeur émotionnelle et esthétique.
-          </p>
-        </article>
-      </section>
+            <article class="card">
+              <div class="icon">∞</div>
+              <h3>Résonance</h3>
+              <p>Le laboratoire photonique prolonge l’univers Helios : mandala vivant, fréquence, anneaux et mouvement.</p>
+            </article>
+          </div>
+        </section>
+      </main>
 
       <footer>
         <div>© 2026 Helios Astro</div>
         <div>
-          <a href="./index.html?v=1100">Accueil</a> ·
-          <a href="./offres.html?v=1100">Offres</a> ·
-          <a href="./logiciel.html?v=1100">Logiciel</a> ·
-          <a href="./livre.html?v=1100">Livre</a> ·
-          <a href="./contact.html?v=1100">Contact</a>
+          <a href="./index.html?v=1300">Accueil</a> ·
+          <a href="./offres.html?v=1300">Offres</a> ·
+          <a href="./logiciel.html?v=1300">Logiciel</a> ·
+          <a href="./laboratoire.html?v=1300">Laboratoire</a> ·
+          <a href="./contact.html?v=1300">Contact</a>
         </div>
       </footer>
     </div>
   </div>
 
   <script>
-    const canvas = document.getElementById("bg-canvas");
-    const ctx = canvas.getContext("2d");
+    const bg = document.getElementById("space");
+    const bctx = bg.getContext("2d");
+    let bw = 0, bh = 0, bt = 0;
 
-    let w, h, t = 0;
-
-    function resize(){
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
+    function resizeBg(){
+      bw = bg.width = window.innerWidth * devicePixelRatio;
+      bh = bg.height = window.innerHeight * devicePixelRatio;
+      bg.style.width = window.innerWidth + "px";
+      bg.style.height = window.innerHeight + "px";
+      bctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+      bw = window.innerWidth;
+      bh = window.innerHeight;
     }
 
-    resize();
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", resizeBg);
+    resizeBg();
 
-    function glow(x, y, r, c){
-      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-      g.addColorStop(0, c);
-      g.addColorStop(1, "rgba(0,0,0,0)");
+    function drawBg(){
+      requestAnimationFrame(drawBg);
+      bt += 0.006;
+      bctx.fillStyle = "#000";
+      bctx.fillRect(0,0,bw,bh);
+
+      for(let i=0;i<160;i++){
+        const x = (Math.sin(i*91.17)*10000 % 1) * bw;
+        const y = (Math.cos(i*37.41)*10000 % 1) * bh;
+        const p = .25 + .75*Math.sin(bt*3+i);
+        bctx.fillStyle = `rgba(180,225,255,${0.07*p})`;
+        bctx.fillRect(Math.abs(x),Math.abs(y),1.2,1.2);
+      }
+
+      const cx = bw/2, cy = bh/2;
+      const g = bctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(bw,bh)*.55);
+      g.addColorStop(0,"rgba(45,180,255,.10)");
+      g.addColorStop(.45,"rgba(12,40,95,.10)");
+      g.addColorStop(1,"rgba(0,0,0,0)");
+      bctx.fillStyle = g;
+      bctx.fillRect(0,0,bw,bh);
+    }
+    drawBg();
+
+    const canvas = document.getElementById("hero-mandala");
+    const ctx = canvas.getContext("2d");
+    let s = 900, t = 0;
+
+    function resizeMandala(){
+      const rect = canvas.getBoundingClientRect();
+      s = Math.max(520, Math.floor(rect.width));
+      canvas.width = s * devicePixelRatio;
+      canvas.height = s * devicePixelRatio;
+      canvas.style.height = s + "px";
+      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    }
+
+    window.addEventListener("resize", resizeMandala);
+    resizeMandala();
+
+    function glow(x,y,r,color){
+      const g = ctx.createRadialGradient(x,y,0,x,y,r);
+      g.addColorStop(0,color);
+      g.addColorStop(1,"rgba(0,0,0,0)");
       ctx.fillStyle = g;
       ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.arc(x,y,r,0,Math.PI*2);
       ctx.fill();
     }
 
-    function draw(){
-      requestAnimationFrame(draw);
-      t += 0.01;
+    function drawMandala(){
+      requestAnimationFrame(drawMandala);
+      t += 0.012;
 
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle="#000";
+      ctx.fillRect(0,0,s,s);
 
-      const cx = w / 2;
-      const cy = h / 2;
-      const R = Math.min(w, h) * 0.33;
+      const cx=s/2, cy=s/2;
+      const R=s*.36;
 
-      glow(cx, cy, R * 1.2, "rgba(0,255,200,0.04)");
-      glow(cx, cy, R * 0.8, "rgba(0,120,255,0.05)");
+      glow(cx,cy,R*1.5,"rgba(50,210,255,.08)");
+      glow(cx,cy,R*.7,"rgba(255,255,255,.06)");
 
-      ctx.strokeStyle = "rgba(120,220,255,0.08)";
-      ctx.lineWidth = 1;
-
-      for(let k = 0; k < 6; k++){
-        let rot = k * Math.PI / 3 + t * 0.05;
-
+      for(let ring=1; ring<=9; ring++){
+        const rr = R * ring / 9;
         ctx.beginPath();
-        for(let i = 0; i < 200; i++){
-          let a = i / 200 * Math.PI * 2;
-          let r = R * 0.6 + Math.sin(a * 6 + t) * 20;
-          let x = cx + Math.cos(a + rot) * r;
-          let y = cy + Math.sin(a + rot) * r * 0.8;
-
-          if(i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
+        ctx.arc(cx,cy,rr,0,Math.PI*2);
+        ctx.strokeStyle=`hsla(${190+ring*18+t*20},95%,65%,${.10+ring*.018})`;
+        ctx.lineWidth=1.1;
         ctx.stroke();
+
+        for(let i=0;i<84;i++){
+          const a = i/84*Math.PI*2 + t*.18*ring;
+          const x = cx + Math.cos(a)*(rr + Math.sin(t*2+i)*1.8);
+          const y = cy + Math.sin(a)*(rr + Math.cos(t*2+i)*1.8);
+          ctx.fillStyle=`hsla(${180+ring*20+i*.7},95%,70%,.42)`;
+          ctx.fillRect(x,y,1.5,1.5);
+        }
       }
 
-      for(let i = 0; i < 40; i++){
-        let a = i / 40 * Math.PI * 2 + t;
-        let r = R * 0.5;
-        let x = cx + Math.cos(a) * r;
-        let y = cy + Math.sin(a * 1.2) * r;
-        let pulse = 0.5 + 0.5 * Math.sin(t * 4 + i);
-
-        glow(x, y, 8 * pulse, "rgba(120,240,255,0.15)");
-        glow(x, y, 3, "rgba(255,255,180,0.9)");
+      for(let b=0;b<12;b++){
+        ctx.beginPath();
+        for(let i=0;i<=180;i++){
+          const p=i/180;
+          const a=b/12*Math.PI*2 + p*Math.PI*1.42 + Math.sin(p*Math.PI)*.25 + t*.08;
+          const r=R*p*.94;
+          const x=cx+Math.cos(a)*r;
+          const y=cy+Math.sin(a)*r;
+          if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+        }
+        ctx.strokeStyle=`hsla(${b*30+t*30},95%,70%,.28)`;
+        ctx.lineWidth=1.5;
+        ctx.shadowBlur=12;
+        ctx.shadowColor=`hsla(${b*30+t*30},95%,70%,.5)`;
+        ctx.stroke();
+        ctx.shadowBlur=0;
       }
 
-      let p = 0.5 + 0.5 * Math.sin(t * 3);
-      glow(cx, cy, 40 * p, "rgba(255,255,255,0.15)");
-      glow(cx, cy, 10, "rgba(255,255,200,0.9)");
+      for(let i=0;i<180;i++){
+        const p=((t*.08+i*.017)%1);
+        const a=i*.618 + p*Math.PI*4 + t*.15;
+        const r=R*(.12+.86*p);
+        const x=cx+Math.cos(a)*r;
+        const y=cy+Math.sin(a)*r;
+        const hue=(190+i*2+p*140)%360;
+        glow(x,y,5,`hsla(${hue},95%,70%,.18)`);
+        ctx.fillStyle=`hsla(${hue},95%,78%,.75)`;
+        ctx.beginPath();
+        ctx.arc(x,y,1.5+Math.sin(p*Math.PI)*2,0,Math.PI*2);
+        ctx.fill();
+      }
+
+      glow(cx,cy,60,"rgba(255,255,255,.18)");
+      glow(cx,cy,18,"rgba(255,255,255,.85)");
     }
 
-    draw();
+    drawMandala();
   </script>
 </body>
 </html>
